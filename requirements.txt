@@ -6,3 +6,4 @@ matplotlib
 scikit-learn
 datetime
 pandas_datareader
+yfinance
