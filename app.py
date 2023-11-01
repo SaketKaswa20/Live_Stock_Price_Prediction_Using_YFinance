@@ -93,7 +93,7 @@ most_recent_price = st.number_input("Enter the most recent closing price:", min_
 
 # Button to trigger the prediction
 if st.button("Predict Tomorrow's Closing Price"):
-    most_recent_data = pd.Series([most_recent_price])
+    most_recent_data = pd.Series([most_recent_price][0])
     most_recent_scaled_data = scaler.fit_transform(most_recent_data)
     next_day_prediction = model.predict(np.array([most_recent_scaled_data]))
     next_day_predicted_price = next_day_prediction[0][0] * scaler.scale_[0]
