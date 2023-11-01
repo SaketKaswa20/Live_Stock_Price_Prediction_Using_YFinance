@@ -88,22 +88,26 @@ plt.legend()
 st.pyplot(fig2)
 
 # Predict tomorrow's price based on today's data
-last_data = data_testing[-1]
-last_scaled_price = np.array([last_data])
-x_test_tomorrow = []
-x_test_tomorrow.append(last_scaled_price)
-x_test_tomorrow = np.array(x_test_tomorrow)
+if not data_testing.empty:
+    last_data = data_testing.iloc[-1]  # Access the last row
+    last_scaled_price = np.array([last_data])
+    x_test_tomorrow = []
+    x_test_tomorrow.append(last_scaled_price)
+    x_test_tomorrow = np.array(x_test_tomorrow)
 
-# Make predictions for tomorrow
-y_predicted_tomorrow = model.predict(x_test_tomorrow)
+    # Make predictions for tomorrow
+    y_predicted_tomorrow = model.predict(x_test_tomorrow)
 
-# Scale the prediction back to the original scale
-y_predicted_tomorrow = y_predicted_tomorrow * scale_factor
+    # Scale the prediction back to the original scale
+    y_predicted_tomorrow = y_predicted_tomorrow * scale_factor
 
-# Calculate tomorrow's date
-tomorrow = datetime.today() + pd.DateOffset(days=1)
+    # Calculate tomorrow's date
+    tomorrow = datetime.today() + pd.DateOffset(days=1)
 
-# Display tomorrow's predicted price
-st.subheader("Tomorrow's Predicted Price")
-st.write("Predicted Closing Price for Tomorrow (Based on Today's Data):", y_predicted_tomorrow[0][0])
-st.write("Date:", tomorrow.strftime('%Y-%m-%d'))
+    # Display tomorrow's predicted price
+    st.subheader("Tomorrow's Predicted Price")
+    st.write("Predicted Closing Price for Tomorrow (Based on Today's Data):", y_predicted_tomorrow[0][0])
+    st.write("Date:", tomorrow.strftime('%Y-%m-%d'))
+else:
+    st.subheader("Tomorrow's Predicted Price")
+    st.write("No data available for prediction. Please make sure you have historical data.")
