@@ -107,7 +107,7 @@ if not data_testing.empty:
 
     # Display today's closing price
     st.subheader("Today's Closing Price")
-    st.write("Closing Price for Today:", last_data[0])
+    st.write("Closing Price for Today:", last_data[0]*scale_factor)
 
     # Display tomorrow's predicted price
     st.subheader("Tomorrow's Predicted Price")
