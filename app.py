@@ -104,10 +104,14 @@ if not data_testing.empty:
     # Calculate tomorrow's date
     tomorrow = datetime.today() + pd.DateOffset(days=1)
 
+    # Display today's closing price
+    st.subheader("Today's Closing Price")
+    st.write("Closing Price for Today:", last_data[0])
+
     # Display tomorrow's predicted price
     st.subheader("Tomorrow's Predicted Price")
     st.write("Predicted Closing Price for Tomorrow (Based on Today's Data):", y_predicted_tomorrow[0][0])
-    st.write("Date:", tomorrow.strftime('%Y-%m-%d'))
+    st.write("Date:", tomorrow.strftime('%Y-%m-%d')
 else:
     st.subheader("Tomorrow's Predicted Price")
     st.write("No data available for prediction. Please make sure you have historical data.")
