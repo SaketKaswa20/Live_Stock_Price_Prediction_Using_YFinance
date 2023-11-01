@@ -5,7 +5,7 @@ import pandas_datareader as data
 import yfinance as yf
 from keras.models import load_model
 import streamlit as st
-from datetime import datetime  # Import the datetime module
+from datetime import datetime, timedelta  # Import the datetime module
 
 st.title('Stock Market Prediction')
 
