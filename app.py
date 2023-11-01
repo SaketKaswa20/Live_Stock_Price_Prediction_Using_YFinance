@@ -90,7 +90,8 @@ st.pyplot(fig2)
 # Predict tomorrow's price based on today's data
 if not data_testing.empty:
     last_data = data_testing.iloc[-1]  # Access the last row
-    last_scaled_price = np.array([last_data])
+    tmrw_data=scaler.fit_transform(last_data)
+    last_scaled_price = np.array([tmrw_data])
     x_test_tomorrow = []
     x_test_tomorrow.append(last_scaled_price)
     x_test_tomorrow = np.array(x_test_tomorrow)
