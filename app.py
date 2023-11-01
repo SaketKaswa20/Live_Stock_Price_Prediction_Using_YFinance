@@ -90,7 +90,7 @@ st.pyplot(fig2)
 # Predict tomorrow's price based on today's data
 if not data_testing.empty:
     last_100_days = df['Close'].iloc[-100:]  # Get the last 100 days of closing prices
-    last_100_scaled = scaler.transform(last_100_days.values.reshape(-1, 1))
+    last_100_scaled = scaler.fit_transform(last_100_days)
 
     # Predict for tomorrow based on the last 100 days
     x_test_tomorrow = np.array([last_100_scaled])
