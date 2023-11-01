@@ -87,15 +87,28 @@ plt.ylabel('Price')
 plt.legend()
 st.pyplot(fig2)
 
-# Subheader and input for predicting tomorrow's closing price
-st.subheader("Predict Tomorrow's Closing Price")
-most_recent_price = st.number_input("Enter the most recent closing price:", min_value=0.0)
+# Calculate tomorrow's date
+end_date = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
 
-# Button to trigger the prediction
-if st.button("Predict Tomorrow's Closing Price"):
-    most_recent_data = np.array([[most_recent_price]])  # Convert the input to a NumPy array
-    most_recent_scaled_data = scaler.transform(most_recent_data[0])  # Scale the data using the existing scaler
-    next_day_prediction = model.predict(most_recent_scaled_data)  # Make the prediction
-    next_day_predicted_price = next_day_prediction[0][0] * scaler.scale_[0]  # Inverse transform the prediction
-    st.write(f"Predicted Closing Price for Tomorrow: {next_day_predicted_price:.2f}")
+# Download data for tomorrow
+df_tomorrow = yf.download(user_input, end_date, end_date)
 
+# Data preprocessing and scaling
+data_testing_tomorrow = pd.DataFrame(df_tomorrow['Close'])
+input_data_tomorrow = scaler.transform(data_testing_tomorrow)
+
+x_test_tomorrow = []
+for i in range(100, len(input_data_tomorrow)):
+    x_test_tomorrow.append(input_data_tomorrow[i - 100 : i])
+
+x_test_tomorrow = np.array(x_test_tomorrow)
+
+# Make predictions for tomorrow
+y_predicted_tomorrow = model.predict(x_test_tomorrow)
+
+# Scale the predictions back to the original scale
+y_predicted_tomorrow = y_predicted_tomorrow * scale_factor
+
+# Display tomorrow's predicted price
+st.subheader("Tomorrow's Predicted Price")
+st.write("Predicted Closing Price for Tomorrow:", y_predicted_tomorrow[-1][0])
