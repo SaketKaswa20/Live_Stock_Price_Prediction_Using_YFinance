@@ -90,25 +90,25 @@ st.pyplot(fig2)
 # Calculate tomorrow's date
 end_date = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
 
-# Download data for tomorrow
-df_tomorrow = yf.download(user_input, end_date, end_date)
+# Download data for today
+df_today = yf.download(user_input, end_date, end_date)
 
 # Data preprocessing and scaling
-data_testing_tomorrow = pd.DataFrame(df_tomorrow['Close'])
-input_data_tomorrow = scaler.fit_transform(data_testing_tomorrow)
+data_testing_today = pd.DataFrame(df_today['Close'])
+input_data_today = scaler.transform(data_testing_today)
 
-x_test_tomorrow = []
-for i in range(100, len(input_data_tomorrow)):
-    x_test_tomorrow.append(input_data_tomorrow[i - 100 : i])
+x_test_today = []
+for i in range(100, len(input_data_today)):
+    x_test_today.append(input_data_today[i - 100 : i])
 
-x_test_tomorrow = np.array(x_test_tomorrow)
+x_test_today = np.array(x_test_today)
 
-# Make predictions for tomorrow
-y_predicted_tomorrow = model.predict(x_test_tomorrow)
+# Make predictions for today (considering it as tomorrow's prediction)
+y_predicted_today = model.predict(x_test_today)
 
 # Scale the predictions back to the original scale
-y_predicted_tomorrow = y_predicted_tomorrow * scale_factor
+y_predicted_today = y_predicted_today * scale_factor
 
-# Display tomorrow's predicted price
+# Display today's predicted price as if it were tomorrow's
 st.subheader("Tomorrow's Predicted Price")
-st.write("Predicted Closing Price for Tomorrow:", y_predicted_tomorrow[-1][0])
+st.write("Predicted Closing Price for Tomorrow (Based on Today's Data):", y_predicted_today[-1][0])
