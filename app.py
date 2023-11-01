@@ -94,7 +94,7 @@ most_recent_price = st.number_input("Enter the most recent closing price:", min_
 # Button to trigger the prediction
 if st.button("Predict Tomorrow's Closing Price"):
     most_recent_data = np.array([[most_recent_price]])  # Convert the input to a NumPy array
-    most_recent_scaled_data = scaler.transform(most_recent_data[0][0])  # Scale the data using the existing scaler
+    most_recent_scaled_data = scaler.transform(most_recent_data[0])  # Scale the data using the existing scaler
     next_day_prediction = model.predict(most_recent_scaled_data)  # Make the prediction
     next_day_predicted_price = next_day_prediction[0][0] * scaler.scale_[0]  # Inverse transform the prediction
     st.write(f"Predicted Closing Price for Tomorrow: {next_day_predicted_price:.2f}")
