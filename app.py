@@ -88,15 +88,12 @@ plt.legend()
 st.pyplot(fig2)
 
 # Predict tomorrow's price based on today's data
-
 if not data_testing.empty:
-    last_data = data_testing.iloc[-1]  # Access the last row
-    last_scaled_price = np.array([last_data])
-    x_test_tomorrow = []
-    x_test_tomorrow.append(last_scaled_price)
-    x_test_tomorrow = np.array(x_test_tomorrow)
+    last_100_days = df['Close'].iloc[-100:]  # Get the last 100 days of closing prices
+    last_100_scaled = scaler.transform(last_100_days.values.reshape(-1, 1))
 
-    # Make predictions for tomorrow
+    # Predict for tomorrow based on the last 100 days
+    x_test_tomorrow = np.array([last_100_scaled])
     y_predicted_tomorrow = model.predict(x_test_tomorrow)
 
     # Scale the prediction back to the original scale
