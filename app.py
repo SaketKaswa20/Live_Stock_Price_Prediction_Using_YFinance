@@ -88,7 +88,7 @@ plt.legend()
 st.pyplot(fig2)
 
 # Subheader and input for predicting tomorrow's closing price
-st.subheader('Predict Tomorrow\'s Closing Price')
+st.subheader("Predict Tomorrow's Closing Price")
 most_recent_price = st.number_input("Enter the most recent closing price:", min_value=0.0)
 
 # Button to trigger the prediction
