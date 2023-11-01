@@ -99,7 +99,7 @@ if not data_testing.empty:
     y_predicted_tomorrow = model.predict(x_test_tomorrow)
 
     # Scale the prediction back to the original scale
-    #y_predicted_tomorrow = y_predicted_tomorrow * scale_factor
+    y_predicted_tomorrow = y_predicted_tomorrow * scale_factor
 
     # Calculate tomorrow's date
     tomorrow = datetime.today() + pd.DateOffset(days=1)
