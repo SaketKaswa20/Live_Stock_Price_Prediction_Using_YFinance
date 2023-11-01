@@ -89,7 +89,7 @@ st.pyplot(fig2)
 
 # Subheader and input for predicting tomorrow's closing price
 st.subheader("Predict Tomorrow's Closing Price")
-most_recent_price = st.number_input("Enter the most recent closing price:", min_value=0.0)
+most_recent_price = int(st.number_input("Enter the most recent closing price:", min_value=0.0))
 
 # Button to trigger the prediction
 if st.button("Predict Tomorrow's Closing Price"):
