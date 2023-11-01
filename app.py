@@ -95,7 +95,7 @@ df_tomorrow = yf.download(user_input, end_date, end_date)
 
 # Data preprocessing and scaling
 data_testing_tomorrow = pd.DataFrame(df_tomorrow['Close'])
-input_data_tomorrow = scaler.transform(data_testing_tomorrow)
+input_data_tomorrow = scaler.fit_transform(data_testing_tomorrow)
 
 x_test_tomorrow = []
 for i in range(100, len(input_data_tomorrow)):
