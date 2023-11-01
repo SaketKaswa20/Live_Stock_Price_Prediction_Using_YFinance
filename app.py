@@ -112,6 +112,3 @@ if not data_testing.empty:
     st.subheader("Tomorrow's Predicted Price")
     st.write("Predicted Closing Price for Tomorrow (Based on Today's Data):", y_predicted_tomorrow[0][0])
     st.write("Date:", tomorrow.strftime('%Y-%m-%d')
-else:
-    st.subheader("Tomorrow's Predicted Price")
-    st.write("No data available for prediction. Please make sure you have historical data.")
