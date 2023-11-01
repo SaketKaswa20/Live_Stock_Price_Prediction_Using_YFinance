@@ -88,6 +88,7 @@ plt.legend()
 st.pyplot(fig2)
 
 # Predict tomorrow's price based on today's data
+
 if not data_testing.empty:
     last_data = data_testing.iloc[-1]  # Access the last row
     last_scaled_price = np.array([last_data])
@@ -111,4 +112,7 @@ if not data_testing.empty:
     # Display tomorrow's predicted price
     st.subheader("Tomorrow's Predicted Price")
     st.write("Predicted Closing Price for Tomorrow (Based on Today's Data):", y_predicted_tomorrow[0][0])
-    st.write("Date:", tomorrow.strftime('%Y-%m-%d')
+    st.write("Date:", tomorrow.strftime('%Y-%m-%d'))
+else:
+    st.subheader("Tomorrow's Predicted Price")
+    st.write("No data available for prediction. Please make sure you have historical data.")
