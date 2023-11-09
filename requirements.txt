@@ -7,4 +7,3 @@ scikit-learn
 datetime
 pandas_datareader
 yfinance
-MinMaxScaler
