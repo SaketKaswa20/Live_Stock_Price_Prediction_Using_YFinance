@@ -98,8 +98,8 @@ if not data_testing.empty:
     # Make predictions for tomorrow
     y_predicted_tomorrow = model.predict(x_test_tomorrow)
 
-    # Scale the prediction back to the original scale
-    y_predicted_tomorrow = y_predicted_tomorrow * scale_factor
+    # Inverse transform the scaled prediction back to the original scale
+    y_predicted_tomorrow = scaler.inverse_transform(y_predicted_tomorrow.reshape(-1, 1))
 
     # Calculate tomorrow's date
     tomorrow = datetime.today() + pd.DateOffset(days=1)
@@ -115,3 +115,4 @@ if not data_testing.empty:
 else:
     st.subheader("Tomorrow's Predicted Price")
     st.write("No data available for prediction. Please make sure you have historical data.")
+
