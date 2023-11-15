@@ -82,12 +82,12 @@ st.subheader('Predictions v/s Original')
 fig2=plt.figure(figsize=(12,6))
 # plt.plot(y_test, 'b', label= 'Original Price')
 # plt.plot(y_predicted, 'r', label= 'Predicted Price')
-st.line_chart(y_test, 'b', label= 'Original Price')
-st.line_chart(y_predicted, 'r', label= 'Predicted Price')
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.legend()
-st.pyplot(fig2)
+st.line_chart(y_test)
+st.line_chart(y_predicted)
+# plt.xlabel('Time')
+# plt.ylabel('Price')
+# plt.legend()
+# st.pyplot(fig2)
 
 # Predict tomorrow's price based on today's data
 if not data_testing.empty:
