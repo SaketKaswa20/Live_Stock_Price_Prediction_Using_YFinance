@@ -80,8 +80,10 @@ y_test= y_test * scale_factor
 #Final Visualization
 st.subheader('Predictions v/s Original')
 fig2=plt.figure(figsize=(12,6))
-plt.plot(y_test, 'b', label= 'Original Price')
-plt.plot(y_predicted, 'r', label= 'Predicted Price')
+# plt.plot(y_test, 'b', label= 'Original Price')
+# plt.plot(y_predicted, 'r', label= 'Predicted Price')
+st.line_chart(y_test, 'b', label= 'Original Price')
+st.line_chart(y_predicted, 'r', label= 'Predicted Price')
 plt.xlabel('Time')
 plt.ylabel('Price')
 plt.legend()
